@@ -1,0 +1,10 @@
+logging:
+  level:
+    org.springframework.data.mongodb.core: DEBUG
+    org.mongodb.driver: DEBUG
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://<MONGOLIFT_USER>:<MONGOLIFT_PASSWORD>@cluster0.egn03.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: mongolift

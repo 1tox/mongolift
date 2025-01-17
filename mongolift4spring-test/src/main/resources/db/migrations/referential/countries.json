@@ -1,0 +1,18 @@
+[
+  {
+    "name": "France",
+    "capital": "Paris",
+    "continent": "Europe"
+  },
+  {
+    "name": "United States",
+    "capital": "Washington, D.C.",
+    "continent": "North America"
+  },
+  {
+    "name": "Japan",
+    "capital": "Tokyo",
+    "continent": "Asia"
+  }
+]
+

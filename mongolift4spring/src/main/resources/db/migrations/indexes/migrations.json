@@ -1,0 +1,11 @@
+[
+  {
+    key: {
+      planName: 1,
+      fileName: 1,
+      command: 1,
+      id: -1
+    },
+    name: "planName_fileName_command_id_desc"
+  }
+]
