@@ -4,10 +4,50 @@
   <parent>
     <groupId>tech.ideo</groupId>
     <artifactId>mongolift</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
   </parent>
 
   <artifactId>mongolift-core</artifactId>
+
+  <description>Core API for managing migrations</description>
+
+  <url>https://github.com/1tox/mongolift</url>
+  <licenses>
+    <license>
+      <name>GNU General Public License version 3</name>
+      <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>1tox</id>
+      <name>Alexandre FERRI</name>
+      <email>alexandre.ferri@ideo.tech</email>
+      <organization>IDEO</organization>
+      <roles>
+        <role>Lead Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>https://github.com/1tox/mongolift.git</connection>
+    <developerConnection>https://github.com/1tox/mongolift.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/1tox/mongolift</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>central</id>
+      <url>https://central.sonatype.com</url>
+    </repository>
+    <snapshotRepository>
+      <id>central</id>
+      <url>https://central.sonatype.com</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <properties>
     <bson.version>5.2.1</bson.version>
@@ -36,5 +76,28 @@
       <version>${slf4j-api.version}</version>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+      </plugin>
+
+    </plugins>
+  </build>
 
 </project>

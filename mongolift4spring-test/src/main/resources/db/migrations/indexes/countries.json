@@ -4,5 +4,11 @@
       name: 1
     },
     name: "name_1"
+  },
+  {
+    key: {
+      continent: 1
+    },
+    name: "continent_1"
   }
 ]
