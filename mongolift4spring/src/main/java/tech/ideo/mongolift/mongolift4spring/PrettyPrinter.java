@@ -3,6 +3,7 @@ package tech.ideo.mongolift.mongolift4spring;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -51,12 +52,14 @@ public class PrettyPrinter {
     }
 
     private static Function<MigrationMetadataEntity, String> toPrettyPrint() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss.SSS");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         return migrationMetadataEntity ->
             MessageFormat.format("|{0}|{1}|{2}|{3}|{4}|{5}|{6}",
                 alignLeft(migrationMetadataEntity.getPlanName()),
                 alignLeft(migrationMetadataEntity.getFileName()),
                 alignLeft(migrationMetadataEntity.getCommand().name()),
-                alignLeft(new SimpleDateFormat("yyyyMMdd HH:mm:ss.SSS").format(migrationMetadataEntity.getExecutedAt())),
+                alignLeft(simpleDateFormat.format(migrationMetadataEntity.getExecutedAt())),
                 alignLeft(migrationMetadataEntity.getExecutionTime() + " ms"),
                 alignLeft(migrationMetadataEntity.getStatus().name()),
                 System.lineSeparator());
