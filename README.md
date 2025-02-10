@@ -40,12 +40,18 @@ through your build.gradle file
         implementation("tech.ideo:mongolift4spring:1.0")
     }
 
-### Applying one migration
+### Migrating referential data
 
-In the src/main/resources/db/migration/referential folder, place a json file following this convention:
+In the src/main/resources/db/migrations/referential folder, place a json file that contains referential data you want to
+migrate. It should follow this convention:
 `<MY_COLLECTION>`.json
 
 You're already done!
 
 Next time you will restart your spring boot application, the collection `<MY_COLLECTION>` will be updated.
-A new collection named `migrations` will be added so that you can audit the applied migrations
+Also, a new collection named `migrations` will be added so that you can audit the applied migrations
+
+### ### Applying one migration of referential data indexes
+
+In the src/main/resources/db/migration/indexes folder, place a json file following this convention:
+`<MY_COLLECTION>`.json

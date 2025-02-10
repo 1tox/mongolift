@@ -113,6 +113,7 @@
             <goals>
               <goal>sort</goal>
             </goals>
+            <phase>validate</phase>
           </execution>
         </executions>
       </plugin>
