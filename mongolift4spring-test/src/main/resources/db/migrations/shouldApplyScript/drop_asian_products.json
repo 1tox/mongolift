@@ -1,0 +1,11 @@
+{
+  delete: "countries",
+  deletes: [
+    {
+      q: {
+        continent: "Asia"
+      },
+      "limit": 0
+    }
+  ]
+}

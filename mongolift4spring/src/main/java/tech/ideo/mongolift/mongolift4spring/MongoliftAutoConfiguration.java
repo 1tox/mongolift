@@ -12,12 +12,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
@@ -53,6 +53,7 @@ public class MongoliftAutoConfiguration {
             .mongoliftMetadataRepository(mongoliftMetadataRepositoryAdapter)
             .plan(referential(resolveMigrationsPath(migrationProperties)))
             .plan(indexes(resolveMigrationsPath(migrationProperties)))
+            .plan(scripts(resolveMigrationsPath(migrationProperties)))
             .plans(getCustomPlansFrom(migrationProperties))
             .listener(migrationLoggerListener)
             .build()
@@ -86,6 +87,17 @@ public class MongoliftAutoConfiguration {
             .build();
     }
 
+    private static MigrationPlan scripts(Path root) throws IOException, URISyntaxException {
+        var scriptsPath = root.resolve("scripts");
+        return MigrationPlan.builder()
+            .name("scripts")
+            .enabled(true)
+            .commandName(SCRIPT)
+            .path(scriptsPath)
+            .includes(filesInPath(scriptsPath))
+            .build();
+    }
+
     private static List<String> filesInPath(Path directory) throws IOException, URISyntaxException {
         Path path = Path.of(directory.toUri());
         if (Files.isDirectory(path)) {
@@ -95,7 +107,7 @@ public class MongoliftAutoConfiguration {
                     .toList();
             }
         }
-        throw new IOException(MessageFormat.format("path {0} is not a directory", directory));
+        return emptyList();
     }
 
     private List<MigrationPlan> getCustomPlansFrom(MigrationProperties migrationProperties) {

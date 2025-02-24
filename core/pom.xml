@@ -9,7 +9,7 @@
 
   <artifactId>mongolift-core</artifactId>
 
-  <description>Core API for managing migrations</description>
+  <description>MongoLift core API</description>
 
   <url>https://github.com/1tox/mongolift</url>
   <licenses>

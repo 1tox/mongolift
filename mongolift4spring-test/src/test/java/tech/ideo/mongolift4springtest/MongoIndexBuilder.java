@@ -7,10 +7,12 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.index.IndexField;
 import org.springframework.data.mongodb.core.index.IndexInfo;
 import org.springframework.data.mongodb.core.index.IndexOperations;
+import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 public class MongoIndexBuilder {
     private MongoIndexBuilder() {
@@ -26,6 +28,12 @@ public class MongoIndexBuilder {
 
     public interface CollectionStep {
         FieldStep hasIndex(String indexName);
+
+        ProductStep has(int numberOfProducts);
+    }
+
+    public interface ProductStep {
+        void countriesFromContinent(String continent);
     }
 
     public interface FieldStep {
@@ -36,10 +44,11 @@ public class MongoIndexBuilder {
         void andDirection(Sort.Direction direction);
     }
 
-    private static class BuilderSteps implements UsingStep, CollectionStep, FieldStep, IndexStep {
+    private static class BuilderSteps implements UsingStep, CollectionStep, FieldStep, IndexStep, ProductStep {
         private final MongoTemplate mongoTemplate;
         private String collectionName;
         private String indexName;
+        private int numberOfProducts;
         private String fieldName;
         private Sort.Direction direction;
 
@@ -52,6 +61,19 @@ public class MongoIndexBuilder {
             this.collectionName = collectionName;
             return this;
         }
+
+        @Override
+        public ProductStep has(int numberOfProducts) {
+            this.numberOfProducts = numberOfProducts;
+            return this;
+        }
+
+        @Override
+        public void countriesFromContinent(String continent) {
+            Query continents = new Query(where("continent").is(continent));
+            assertThat(mongoTemplate.count(continents, collectionName)).isEqualTo(numberOfProducts);
+        }
+
 
         @Override
         public IndexStep withField(String fieldName) {

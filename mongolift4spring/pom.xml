@@ -8,7 +8,7 @@
   </parent>
   <artifactId>mongolift4spring</artifactId>
   <name>mongolift4spring</name>
-  <description>demo</description>
+  <description>MongoLift implementation for Spring Boot</description>
   <properties></properties>
   <dependencies>
     <dependency>

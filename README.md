@@ -76,4 +76,5 @@ This will create, if not present, or update, if its definition changed, the abov
 
 ### Migrating any kind of scripts
 
-You may also want to manage any kind of MongoDB scripts. To do so, you have to create your own migration plan.
+In the src/main/resources/db/migration/scripts folder, place a json file that contains any Json object that could be
+interpreted by mongosh command [runCommand](https://www.mongodb.com/docs/manual/reference/method/db.runCommand/)

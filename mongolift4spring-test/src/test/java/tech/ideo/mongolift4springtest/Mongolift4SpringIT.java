@@ -153,6 +153,30 @@ class Mongolift4SpringIT {
     }
 
 
+    @Test
+    @Order(3)
+    void shouldRunCommand() throws IOException, URISyntaxException {
+        with(mongoTemplate)
+            .checkThatCollection("countries")
+            .has(1)
+            .countriesFromContinent("Asia");
+
+        Migration newIndexMigration = Migration.builder()
+            .path(migration.getPath())
+            .plan(shouldApplyScriptPlan())
+            .mongoliftMetadataRepository(migration.getMongoliftMetadataRepository())
+            .mongoliftDataRepository(migration.getMongoliftDataRepository())
+            .build();
+
+        newIndexMigration.migrate();
+
+        with(mongoTemplate)
+            .checkThatCollection("countries")
+            .has(0)
+            .countriesFromContinent("Asia");
+    }
+
+
     private MigrationPlan shouldUpdateIndexPlan() throws IOException, URISyntaxException {
         return MigrationPlan.builder()
             .name("shouldUpdateIndex")
@@ -160,6 +184,16 @@ class Mongolift4SpringIT {
             .commandName(UPDATE_INDEXES)
             .path(migration.getPath().resolve(Path.of("shouldUpdateIndex")))
             .include("countries.json")
+            .build();
+    }
+
+    private MigrationPlan shouldApplyScriptPlan() throws IOException, URISyntaxException {
+        return MigrationPlan.builder()
+            .name("shouldApplyScript")
+            .enabled(true)
+            .commandName(SCRIPT)
+            .path(migration.getPath().resolve(Path.of("shouldApplyScript")))
+            .include("drop_asian_products.json")
             .build();
     }
 
