@@ -51,7 +51,7 @@ class Mongolift4SpringIT {
 
     @Test
     void shouldVerifyMigrationIsCorrectlyConfigured() {
-        assertThat(migration.getPlans()).hasSize(2);
+        assertThat(migration.getPlans()).map(MigrationPlan::getName).containsExactly("referential", "indexes", "scripts");
         assertThat(migration.getPlans())
             .filteredOn(migrationPlan -> migrationPlan.getName().equals("referential"))
             .singleElement()
