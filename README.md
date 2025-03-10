@@ -29,7 +29,7 @@ through your pom.xml file
     <dependency>
         <groupId>tech.ideo</groupId>
         <artifactId>mongolift4spring</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </dependency>
 
 #### Gradle
@@ -37,7 +37,7 @@ through your pom.xml file
 through your build.gradle file
 
     dependencies {
-        implementation("tech.ideo:mongolift4spring:1.0")
+        implementation("tech.ideo:mongolift4spring:1.1")
     }
 
 ### Migrating referential data
