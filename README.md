@@ -1,44 +1,81 @@
-![MongoLift logo](https://github.com/1tox/mongolift/blob/main/doc/logo.png)
+<body>
+  <hr style="border: 1px solid #4FB4BF; margin-top: 20px; margin-bottom: 20px;">
 
-Lightweight and production-ready **Java tool for synchronizing Mongo data and indexes between dev and prod
-environments**
+  <div style="display: flex; align-items: center;">
+    <img src="assets/logo.png" align="left" width="300px" height="300px"/>
+    <div style="margin-left: 20px;">
+      <h2 style="font-family: 'Arial', sans-serif;">MongoLift</h2>
+        <div class="centered-icons">
+            <img src="https://shields.io/github/actions/workflow/status/1tox/mongolift/maven.yml?style=plastic" alt="CI">
+            <img src="https://shields.io/maven-central/v/tech.ideo/mongolift?style=plastic" alt="Latest version">
+            <img src="https://img.shields.io/badge/java-21+-yellow?style=plastic" alt="Java versions">
+            <img src="https://img.shields.io/badge/springboot-3+-lightgrey?style=plastic" alt="Spring boot versions">
+            <img src="https://img.shields.io/badge/mongodb-4+-brightgreen?style=plastic" alt="Mongo versions">
+        </div>
 
-## Key features
+  <p style="font-family: 'Arial', sans-serif; font-size: 14px;">
+    Lightweight and production-ready <strong>Java tool for synchronizing MongoDB data from local to prod environments</strong>
+  </p>
 
-* Helps maintaining similar referential data between various environments
-* Keeps audit trace of migrations applied, successful or not
-* Ensures migrations are successfully applied once and for all avoiding already applied migrations
-* Spring Boot integration with auto configuration mechanism
-* No Mongo shell knowledge needed to apply referential data migration
-* Allows migration of home made Mongo scripts
+<h3 style="font-family: 'Arial', sans-serif;">General purpose</h3>
 
-## Operating principles
+  <p style="font-family: 'Arial', sans-serif; font-size: 14px;">
+    MongoLift helps to maintain cohesion between MongoDB data that is not manually handled by the user and your codebase.
+    It means that each time you deploy a new version of your application, MongoLift can perform updates of referential data, indexes, or any kind of custom scripts.
+  </p>
 
-![mongolift operating principles](https://github.com/1tox/mongolift/blob/main/doc/operating_principles.png)
 
-## Usage
 
-### Installation
+<h3 style="font-family: 'Arial', sans-serif;">Features</h3>
 
-In your spring boot application, download latest version:
+  <ul style="font-family: 'Arial', sans-serif; font-size: 14px;">
+    <li>
+        <strong>Cohesion: </strong>Helps maintaining similar referential data between various environments 
+    </li>
+    <li>
+        <strong>Traceability: </strong>Keeps audit trace of migrations applied, successful or not 
+    </li>
+    <li>
+        <strong>Efficiency: </strong>Ensures migrations are successfully applied once and for all avoiding already applied migrations 
+    </li>
+    <li>
+        <strong>Spring boot integration: </strong>Takes advantage of Spring Boot auto configuration mechanism. Support for Spring profiles. 
+    </li>
+    <li>
+        <strong>Java client: </strong>MongoLift core API allows to programmatically performs migrations with few lines of code 
+    </li>
+    <li>
+        <strong>Easy to use: </strong>No Mongo shell knowledge needed to apply referential data migration 
+    </li>
+    <li>
+        <strong>Customization: </strong>Allows migration of homemade Mongo scripts 
+    </li>
+  </ul>
 
-#### Maven
+<h3 style="font-family: 'Arial', sans-serif;">Installation</h3>
+  <p style="font-family: 'Arial', sans-serif; font-size: 14px;">
+    In your spring boot application, download latest version:
+    <h4>Maven</h4>
+    through your pom.xml file
 
-through your pom.xml file
+```
+<dependency>
+    <groupId>tech.ideo</groupId>
+    <artifactId>mongolift4spring</artifactId>
+    <version>1.1</version>
+</dependency>
+``` 
 
-    <dependency>
-        <groupId>tech.ideo</groupId>
-        <artifactId>mongolift4spring</artifactId>
-        <version>1.1</version>
-    </dependency>
-
-#### Gradle
-
+<h4>Gradle</h4>
 through your build.gradle file
 
-    dependencies {
-        implementation("tech.ideo:mongolift4spring:1.1")
-    }
+```
+dependencies {
+    implementation("tech.ideo:mongolift4spring:1.1")
+}
+```
+
+<h3 style="font-family: 'Arial', sans-serif;">Usage</h3>
 
 ### Migrating referential data
 
@@ -78,3 +115,16 @@ This will create, if not present, or update, if its definition changed, the abov
 
 In the src/main/resources/db/migration/scripts folder, place a json file that contains any Json object that could be
 interpreted by mongosh command [runCommand](https://www.mongodb.com/docs/manual/reference/method/db.runCommand/)
+
+<h3 style="font-family: 'Arial', sans-serif;">Next to come</h3>
+
+  <p style="font-family: 'Arial', sans-serif; font-size: 14px;">
+    <ul>
+        <li>Allow to order homemade scripts</li>
+        <li>Support for Spring boot tests</li>
+    </ul>
+  </p>
+  </div>
+</div>
+  <hr style="border: 1px solid #4FB4BF; margin-top: 20px; margin-bottom: 20px;">
+</body>
